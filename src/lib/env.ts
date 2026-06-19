@@ -17,7 +17,10 @@ export const env = {
   publicKey: process.env.NEXTPAYMENTS_PUBLIC_KEY ?? '',
   privateKey: process.env.NEXTPAYMENTS_PRIVATE_KEY ?? '',
   ipnSecret: process.env.NEXTPAYMENTS_IPN_SECRET ?? 'dev-ipn-secret',
-  appUrl: process.env.APP_URL ?? 'http://localhost:3000',
+  appUrl:
+    process.env.APP_URL ??
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
 
   /** Gateway credentials, asserted present — call only on the `http` path. */
   requireHttp(): { apiUrl: string; publicKey: string; privateKey: string } {
