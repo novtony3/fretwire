@@ -1,11 +1,19 @@
-import { randomUUID } from 'node:crypto';
-
 import { NextResponse } from 'next/server';
 
 import { checkoutInputSchema, priceCart } from '@/lib/checkout';
 import { getClient } from '@/lib/payments/client';
 import { createLocalOrder, setGatewayFields } from '@/lib/store/orders';
 import { networkForCoin } from '@/lib/payments/types';
+
+/**
+ * The gateway requires `externalOrderId` as a positive **integer** (a string or
+ * an oversized value is rejected). We key the local store/route by its string
+ * form and send the numeric form to the gateway. int32-ranged keeps it within
+ * the backend's accepted bounds; random avoids cross-order collisions.
+ */
+function newExternalOrderId(): string {
+  return String(Math.floor(Math.random() * 2_000_000_000) + 1);
+}
 
 /** Create an order: price the cart, create a gateway invoice, persist, return the pay URL. */
 export async function POST(req: Request): Promise<Response> {
@@ -21,7 +29,7 @@ export async function POST(req: Request): Promise<Response> {
     return NextResponse.json({ error: 'unknown_product' }, { status: 400 });
   }
 
-  const externalOrderId = randomUUID();
+  const externalOrderId = newExternalOrderId();
   const network = networkForCoin(coin);
   await createLocalOrder({
     externalOrderId,
@@ -37,7 +45,7 @@ export async function POST(req: Request): Promise<Response> {
       amount: priced.total,
       coin,
       network,
-      externalOrderId,
+      externalOrderId: Number(externalOrderId),
       description: `Shop order ${externalOrderId}`,
     });
     await setGatewayFields(externalOrderId, {
