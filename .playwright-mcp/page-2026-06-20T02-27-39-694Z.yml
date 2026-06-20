@@ -1,0 +1,205 @@
+- generic [ref=e1]:
+  - generic [ref=e35]:
+    - complementary [ref=e36]:
+      - generic [ref=e37]:
+        - link "VNPayment VNPayment" [ref=e38] [cursor=pointer]:
+          - /url: /en
+          - generic [ref=e39]:
+            - img "VNPayment" [ref=e40]:
+              - generic [ref=e42]: VN
+            - generic [ref=e43]: VNPayment
+        - navigation [ref=e44]:
+          - list [ref=e45]:
+            - listitem [ref=e46]:
+              - link "Home" [ref=e47] [cursor=pointer]:
+                - /url: /en/home
+                - img [ref=e48]
+                - text: Home
+            - listitem [ref=e51]:
+              - link "Wallet" [ref=e52] [cursor=pointer]:
+                - /url: /en/dashboard
+                - img [ref=e53]
+                - text: Wallet
+            - listitem [ref=e56]:
+              - link "Transactions" [ref=e57] [cursor=pointer]:
+                - /url: /en/transactions
+                - img [ref=e58]
+                - text: Transactions
+            - listitem [ref=e61]:
+              - link "Orders" [ref=e62] [cursor=pointer]:
+                - /url: /en/orders
+                - img [ref=e63]
+                - text: Orders
+            - listitem [ref=e65]:
+              - link "Affiliate" [ref=e66] [cursor=pointer]:
+                - /url: /en/affiliate
+                - img [ref=e67]
+                - text: Affiliate
+            - listitem [ref=e71]:
+              - link "Pay Settings" [ref=e72] [cursor=pointer]:
+                - /url: /en/pay-settings
+                - img [ref=e73]
+                - text: Pay Settings
+            - listitem [ref=e76]:
+              - link "Integrations" [ref=e77] [cursor=pointer]:
+                - /url: /en/integrations
+                - img [ref=e78]
+                - text: Integrations
+            - listitem [ref=e82]:
+              - link "Invoicing" [ref=e83] [cursor=pointer]:
+                - /url: /en/invoicing
+                - img [ref=e84]
+                - text: Invoicing
+            - listitem [ref=e87]:
+              - link "Quick POS" [ref=e88] [cursor=pointer]:
+                - /url: /en/quick-pos
+                - img [ref=e89]
+                - text: Quick POS
+            - listitem [ref=e94]:
+              - link "Support" [ref=e95] [cursor=pointer]:
+                - /url: /en/support
+                - img [ref=e96]
+                - text: Support
+          - generic [ref=e103]:
+            - img [ref=e104]
+            - text: More
+        - button "New Transaction" [ref=e106]:
+          - generic [ref=e107]:
+            - img [ref=e108]
+            - text: New Transaction
+    - generic [ref=e109]:
+      - banner [ref=e110]:
+        - generic [ref=e111]:
+          - img [ref=e113]
+          - heading "Integrations" [level=1] [ref=e117]
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - generic [ref=e121]:
+                - generic [ref=e122]: "6.88"
+                - generic [ref=e123]: USDT
+              - img [ref=e124]
+              - combobox "Balance coin" [ref=e126] [cursor=pointer]:
+                - option "Ethereum (ETH)"
+                - option "Tether (USDT)" [selected]
+            - 'button "Language: English" [ref=e128]':
+              - generic [ref=e129]:
+                - img [ref=e130]
+                - text: EN
+                - img [ref=e133]
+            - button "Light mode" [ref=e135]:
+              - img [ref=e137]
+            - button "Account" [ref=e144]:
+              - generic [ref=e145]:
+                - generic "Email verified" [ref=e146]:
+                  - generic [ref=e147]: "N"
+                  - img "Email verified" [ref=e148]:
+                    - img [ref=e149]
+                - generic [ref=e152]: novtony3
+                - img [ref=e153]
+      - main [ref=e155]:
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - img [ref=e159]
+            - paragraph [ref=e161]:
+              - text: Need help getting started? Visit our
+              - link "API Documentation" [ref=e162] [cursor=pointer]:
+                - /url: "#"
+              - text: and
+              - link "Knowledge Base" [ref=e163] [cursor=pointer]:
+                - /url: "#"
+              - text: .
+          - tablist "Integrations" [ref=e164]:
+            - tab "Active Integrations" [selected] [ref=e165]
+            - tab "Webhook History" [ref=e166]
+          - button "Add Integration" [ref=e168]:
+            - generic [ref=e169]:
+              - img [ref=e170]
+              - text: Add Integration
+          - generic [ref=e171]:
+            - table [ref=e173]:
+              - rowgroup [ref=e174]:
+                - row "Name Site URL Status Created Actions" [ref=e175]:
+                  - columnheader "Name" [ref=e176]
+                  - columnheader "Site URL" [ref=e177]
+                  - columnheader "Status" [ref=e178]
+                  - columnheader "Created" [ref=e179]
+                  - columnheader "Actions" [ref=e180]
+              - rowgroup [ref=e181]:
+                - row "myshop1 https://myshop1.com Active 6/18/2026 Edit integration Manage API keys Delete integration" [ref=e182]:
+                  - cell "myshop1" [ref=e183]
+                  - cell "https://myshop1.com" [ref=e184]
+                  - cell "Active" [ref=e185]
+                  - cell "6/18/2026" [ref=e186]
+                  - cell "Edit integration Manage API keys Delete integration" [ref=e187]:
+                    - generic [ref=e188]:
+                      - button "Edit integration" [ref=e189]:
+                        - img [ref=e190]
+                      - button "Manage API keys" [ref=e193]:
+                        - img [ref=e194]
+                      - button "Delete integration" [ref=e197]:
+                        - img [ref=e198]
+                - row "myshop https://myshop.com Active 6/18/2026 Edit integration Manage API keys Delete integration" [ref=e201]:
+                  - cell "myshop" [ref=e202]
+                  - cell "https://myshop.com" [ref=e203]
+                  - cell "Active" [ref=e204]
+                  - cell "6/18/2026" [ref=e205]
+                  - cell "Edit integration Manage API keys Delete integration" [ref=e206]:
+                    - generic [ref=e207]:
+                      - button "Edit integration" [ref=e208]:
+                        - img [ref=e209]
+                      - button "Manage API keys" [ref=e212]:
+                        - img [ref=e213]
+                      - button "Delete integration" [ref=e216]:
+                        - img [ref=e217]
+            - navigation "Integrations pages" [ref=e220]:
+              - button "Prev" [disabled]:
+                - generic:
+                  - img
+                  - text: Prev
+              - button "Page 1" [ref=e221]:
+                - generic [ref=e222]: "1"
+              - button "Next" [disabled]:
+                - generic:
+                  - text: Next
+                  - img
+          - generic [ref=e224]:
+            - paragraph [ref=e225]:
+              - text: Need assistance?
+              - link "Contact Support" [ref=e226] [cursor=pointer]:
+                - /url: "#"
+            - navigation [ref=e227]:
+              - link "Integration Guide" [ref=e228] [cursor=pointer]:
+                - /url: "#"
+              - link "API Documentation" [ref=e229] [cursor=pointer]:
+                - /url: "#"
+              - link "FAQ" [ref=e230] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e231]:
+            - button "Close" [ref=e232]
+            - dialog "New Integration" [ref=e233]:
+              - generic [ref=e235]:
+                - heading "New Integration" [level=2] [ref=e236]
+                - button "Close" [active] [ref=e237]:
+                  - img [ref=e238]
+              - generic [ref=e244]:
+                - paragraph [ref=e245]: What type of integration are you adding?
+                - button "Pre-Built Plugins Seamlessly accept crypto on ecommerce and billing platforms (Magento and others)." [ref=e246]:
+                  - img [ref=e248]
+                  - generic [ref=e252]:
+                    - generic [ref=e253]: Pre-Built Plugins
+                    - generic [ref=e254]: Seamlessly accept crypto on ecommerce and billing platforms (Magento and others).
+                  - img [ref=e255]
+                - button "API Integrations Create custom cryptocurrency integrations for your business." [ref=e257]:
+                  - img [ref=e259]
+                  - generic [ref=e263]:
+                    - generic [ref=e264]: API Integrations
+                    - generic [ref=e265]: Create custom cryptocurrency integrations for your business.
+                  - img [ref=e266]
+                - button "Payment Buttons Create simple Buy Now and automated checkout cart buttons." [ref=e268]:
+                  - img [ref=e270]
+                  - generic [ref=e276]:
+                    - generic [ref=e277]: Payment Buttons
+                    - generic [ref=e278]: Create simple Buy Now and automated checkout cart buttons.
+                  - img [ref=e279]
+  - region "Notifications alt+T"
+  - alert [ref=e33]
