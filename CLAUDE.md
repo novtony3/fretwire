@@ -44,6 +44,9 @@ Two swappable seams keep integration isolated:
 
 Catalog is a static module (no DB) → reads instantly and deploys on serverless.
 
+See [docs/storage.md](docs/storage.md) for the full storage reference (what's
+persisted, MemoryStore vs Redis, key schemas, and the two expiry meanings).
+
 ### Payment flow
 
 `POST /api/checkout` prices the cart, creates a gateway invoice, persists it, and
