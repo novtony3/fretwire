@@ -1,0 +1,19 @@
+# Cloudflare Workers local-dev vars (wrangler dev). Copy to .dev.vars (gitignored)
+# and fill in — mirrors .env.example but read by the Worker runtime, not Next's
+# own dotenv loading.
+
+PAYMENTS_MODE=mock
+
+# NextPayments gateway. Required only when PAYMENTS_MODE=http.
+NEXTPAYMENTS_API_URL=https://your-gateway.example
+NEXTPAYMENTS_PUBLIC_KEY=
+NEXTPAYMENTS_PRIVATE_KEY=
+NEXTPAYMENTS_IPN_SECRET=dev-ipn-secret
+
+# Upstash Redis (REST API). Omit both to fall back to the in-memory store.
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+
+# Public origin of THIS worker (used to build the IPN self-callback URL in
+# mock mode). Defaults to wrangler dev's local port.
+NEXT_PUBLIC_SITE_URL=http://localhost:8787

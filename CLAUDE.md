@@ -85,6 +85,9 @@ See [docs/integration.md](docs/integration.md) for the full spec. In short:
 
 See [docs/deployment.md](docs/deployment.md) for the live deployment record
 (GitHub/Vercel targets, env vars, the IPN-callback gotcha, and the TODO list).
+Cloudflare Workers is also supported as an additive deploy target — see
+[docs/cloudflare.md](docs/cloudflare.md) for setup, required vars, and
+commands (not yet deployed to a live account).
 
 - Hosted on Vercel; production build is clean. CLI deploys work; GitHub
   auto-deploy needs the Vercel↔GitHub app authorized on the `novtony3` account.
