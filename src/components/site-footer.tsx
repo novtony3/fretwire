@@ -11,7 +11,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Logo />
           <p className="text-xs text-[var(--color-subtle)]">
-            {SITE.tagline} · Demo store — crypto checkout via OMNIPAYX.
+            {SITE.tagline} · Demo guitar store — crypto checkout via OMNIPAYX.
           </p>
         </div>
       </div>
