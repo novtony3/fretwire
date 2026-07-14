@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { env } from '@/lib/env';
+import { getPaymentsConfig } from '@/lib/payments/config';
 import { emitMockPaidIpn } from '@/lib/payments/mock-client';
 import { getOrder } from '@/lib/store/orders';
 
@@ -9,7 +9,8 @@ export async function POST(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
 ): Promise<Response> {
-  if (env.mode !== 'mock') {
+  const cfg = await getPaymentsConfig();
+  if (cfg.mode !== 'mock') {
     return NextResponse.json({ error: 'not_found' }, { status: 404 });
   }
   const { id } = await params;
@@ -17,6 +18,6 @@ export async function POST(
   if (!order) {
     return NextResponse.json({ error: 'not_found' }, { status: 404 });
   }
-  await emitMockPaidIpn(order, { appUrl: env.appUrl, ipnSecret: env.ipnSecret });
+  await emitMockPaidIpn(order, { appUrl: cfg.appUrl, ipnSecret: cfg.ipnSecret });
   return NextResponse.json({ ok: true });
 }

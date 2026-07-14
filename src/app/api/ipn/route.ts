@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { env } from '@/lib/env';
+import { getPaymentsConfig } from '@/lib/payments/config';
 import { markDelivered } from '@/lib/store/ipn-delivery';
 import { getOrder, markStatus } from '@/lib/store/orders';
 import { IPN_HEADERS, ipnPayloadSchema, verifyIpnSignature } from '@/lib/payments/ipn';
@@ -13,8 +13,9 @@ export async function POST(req: Request): Promise<Response> {
   const deliveryId = headers.get(IPN_HEADERS.ID) ?? '';
   const signature = headers.get(IPN_HEADERS.SIGNATURE) ?? '';
 
+  const { ipnSecret } = await getPaymentsConfig();
   const verdict = verifyIpnSignature({
-    ipnSecret: env.ipnSecret,
+    ipnSecret,
     timestamp,
     deliveryId,
     rawBody,

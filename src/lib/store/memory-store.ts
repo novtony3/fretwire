@@ -1,9 +1,12 @@
+import type { PaymentsConfigOverride } from '../payments/types';
+
 import type { Store, StoredOrder } from './types';
 
 type MemState = {
   orders: Map<string, StoredOrder>;
   nonces: Map<string, number>;
   deliveries: Set<string>;
+  config: PaymentsConfigOverride | null;
 };
 
 // Memoized on globalThis so dev HMR keeps one state across module reloads.
@@ -11,7 +14,7 @@ const g = globalThis as unknown as { __memStore?: MemState };
 
 function state(): MemState {
   if (!g.__memStore) {
-    g.__memStore = { orders: new Map(), nonces: new Map(), deliveries: new Set() };
+    g.__memStore = { orders: new Map(), nonces: new Map(), deliveries: new Set(), config: null };
   }
   return g.__memStore;
 }
@@ -51,5 +54,13 @@ export class MemoryStore implements Store {
     if (set.has(deliveryId)) return false;
     set.add(deliveryId);
     return true;
+  }
+
+  async getConfig(): Promise<PaymentsConfigOverride | null> {
+    return state().config;
+  }
+
+  async setConfig(patch: PaymentsConfigOverride): Promise<void> {
+    state().config = { ...(state().config ?? {}), ...patch };
   }
 }

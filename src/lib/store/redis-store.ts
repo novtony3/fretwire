@@ -1,10 +1,13 @@
 import { Redis } from '@upstash/redis';
 
+import type { PaymentsConfigOverride } from '../payments/types';
+
 import type { Store, StoredOrder } from './types';
 
 const orderKey = (id: string) => `order:${id}`;
 const nonceKey = (pk: string) => `nonce:${pk}`;
 const deliveryKey = (id: string) => `ipn:${id}`;
+const CONFIG_KEY = 'config:payments';
 
 /** Reads Upstash / Vercel KV env (either naming) for the REST connection. */
 function fromEnv(): Redis {
@@ -46,5 +49,14 @@ export class RedisStore implements Store {
   async markDelivered(deliveryId: string): Promise<boolean> {
     const res = await this.redis.set(deliveryKey(deliveryId), '1', { nx: true });
     return res === 'OK';
+  }
+
+  async getConfig(): Promise<PaymentsConfigOverride | null> {
+    return (await this.redis.get<PaymentsConfigOverride>(CONFIG_KEY)) ?? null;
+  }
+
+  async setConfig(patch: PaymentsConfigOverride): Promise<void> {
+    const current = (await this.getConfig()) ?? {};
+    await this.redis.set(CONFIG_KEY, { ...current, ...patch });
   }
 }

@@ -7,6 +7,35 @@
 export const ORDER_STATUSES = ['pending', 'paid', 'expired', 'cancelled'] as const;
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 
+export const PAYMENTS_MODES = ['mock', 'http'] as const;
+export type PaymentsMode = (typeof PAYMENTS_MODES)[number];
+
+/** Fully-resolved gateway config the request path reads (env base + Store override). */
+export type ResolvedPaymentsConfig = {
+  mode: PaymentsMode;
+  apiUrl: string;
+  publicKey: string;
+  privateKey: string;
+  ipnSecret: string;
+  appUrl: string;
+};
+
+/** Persisted runtime override; an empty/absent field falls back to env. */
+export type PaymentsConfigOverride = Partial<ResolvedPaymentsConfig>;
+
+export type ConfigField = keyof ResolvedPaymentsConfig;
+export type ConfigSource = 'env' | 'override';
+
+/** The override keys, in display order — single source for form + validation. */
+export const CONFIG_FIELDS = [
+  'mode',
+  'apiUrl',
+  'publicKey',
+  'privateKey',
+  'ipnSecret',
+  'appUrl',
+] as const satisfies ReadonlyArray<keyof ResolvedPaymentsConfig>;
+
 /** Enabled (coin, network) pairs the demo offers — the gateway's catalog. */
 export const ACCEPTED_COINS = [
   { coin: 'ETH', network: 'ETH', label: 'Ethereum (ETH)' },

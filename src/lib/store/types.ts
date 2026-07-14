@@ -1,4 +1,4 @@
-import type { OrderStatus } from '../payments/types';
+import type { OrderStatus, PaymentsConfigOverride } from '../payments/types';
 
 export type StoredOrder = {
   externalOrderId: string;
@@ -32,4 +32,8 @@ export interface Store {
   nextNonce(publicKey: string): Promise<number>;
   /** First time a delivery id is seen → true; repeats → false (idempotency). */
   markDelivered(deliveryId: string): Promise<boolean>;
+  /** Dev-only runtime gateway config override (null when nothing is set). */
+  getConfig(): Promise<PaymentsConfigOverride | null>;
+  /** Merge a partial override into the stored config. */
+  setConfig(patch: PaymentsConfigOverride): Promise<void>;
 }
