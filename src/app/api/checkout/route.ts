@@ -41,7 +41,8 @@ export async function POST(req: Request): Promise<Response> {
   });
 
   try {
-    const order = await getClient().createOrder({
+    const client = await getClient();
+    const order = await client.createOrder({
       amount: priced.total,
       coin,
       network,

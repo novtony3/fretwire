@@ -1,6 +1,6 @@
-import { env } from '../env';
 import { nextNonce } from '../store/nonce';
 
+import { requireHttpConfig } from './config';
 import { signRequest } from './sign';
 import {
   ORDER_STATUSES,
@@ -8,6 +8,7 @@ import {
   type GatewayOrder,
   type NextPaymentsClient,
   type OrderStatus,
+  type ResolvedPaymentsConfig,
 } from './types';
 
 const ORDERS_PATH = '/api/orders';
@@ -51,8 +52,10 @@ function parseGatewayOrder(json: unknown): GatewayOrder {
  * per-publicKey store) and sends the EXACT signed `rawBody`.
  */
 export class HttpClient implements NextPaymentsClient {
+  constructor(private readonly cfg: ResolvedPaymentsConfig) {}
+
   async createOrder(input: CreateOrderInput): Promise<GatewayOrder> {
-    const { apiUrl, publicKey, privateKey } = env.requireHttp();
+    const { apiUrl, publicKey, privateKey } = requireHttpConfig(this.cfg);
     const nonce = await nextNonce(publicKey);
     const { signature, timestamp, rawBody } = signRequest({
       method: 'POST',
@@ -79,7 +82,7 @@ export class HttpClient implements NextPaymentsClient {
   }
 
   async getOrder(orderId: string): Promise<GatewayOrder> {
-    const { apiUrl, publicKey, privateKey } = env.requireHttp();
+    const { apiUrl, publicKey, privateKey } = requireHttpConfig(this.cfg);
     const path = `${ORDERS_PATH}/${orderId}`;
     const nonce = await nextNonce(publicKey);
     const { signature, timestamp } = signRequest({
