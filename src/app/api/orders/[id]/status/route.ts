@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-import { env } from '@/lib/env';
 import { getClient } from '@/lib/payments/client';
+import { getPaymentsConfig } from '@/lib/payments/config';
 import { getOrder, markStatus } from '@/lib/store/orders';
 
 /** Order status for the payment page to poll. Auto-expires; reconciles in http mode. */
@@ -22,9 +22,11 @@ export async function GET(
   }
 
   // In http mode, reconcile a still-pending order against the gateway.
-  if (env.mode === 'http' && order.status === 'pending' && order.npOrderId) {
+  const cfg = await getPaymentsConfig();
+  if (cfg.mode === 'http' && order.status === 'pending' && order.npOrderId) {
     try {
-      const remote = await getClient().getOrder(order.npOrderId);
+      const client = await getClient();
+      const remote = await client.getOrder(order.npOrderId);
       if (remote.status !== order.status) {
         await markStatus(id, {
           status: remote.status,
